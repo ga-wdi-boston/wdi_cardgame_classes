@@ -7,6 +7,8 @@ module Game
       winning_player(players)
     end
 
+    private
+
     def winning_player(players)
       players.reject {|player| player.hand.total > 21 }
              .sort {|player_a, player_b| player_a.hand.total <=> player_b.hand.total }
@@ -14,7 +16,9 @@ module Game
     end
 
     def new_players(number_players)
-      number_players.map { Player.new }
+      players = []
+      number_players.times { players << Player.new }
+      players
     end
 
     def deal_cards(players, deck)
